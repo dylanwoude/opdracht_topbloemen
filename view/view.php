@@ -23,13 +23,13 @@ class FormView{
 				<p>Achternaam</p>
 				<input type="text" name="LastName" required><br>
 				<p>Telefoonnummer</p>
-				<input type="text" name="PhoneNumber" required><br>
+				<input type="tel" name="PhoneNumber" required><br>
 				<p>E-mailadres</p>
 				<input type="text" name="E_mail" required><br>
 				<p>Afbeelding</p>
 				<input type="file" name="Image" ><br>
 				<p>Wachtwoord</p>
-				<input type="text" name="Password" required><br>
+				<input type="password" name="Password" required><br>
 				<input type="submit" name="submit" value="submit">
 			</form>';
 

@@ -2,13 +2,9 @@
 
 if(isset($_POST['submit'])){
 
-	$connect = mysqli_connect($_POST['Server'], $_POST['Username'], $_POST['Password']);
+	$config = parse_ini_file('C:/nginx/www/opdracht/config.ini'); 
 
-	$queryDatabase = "CREATE DATABASE topbloemen;";
-
-	$Create_Db = mysqli_query($connect, $queryDatabase);
-
-	$connect = mysqli_connect($_POST['Server'], $_POST['Username'], $_POST['Password'], "informatie_topbloemen");
+	$connect = mysqli_connect($config['servername'], $config['username'], $config['password'], $config['dbname']);
 
 	$queryTable = "CREATE TABLE informatie_topbloemen (
 	id INT(6) AUTO_INCREMENT PRIMARY KEY,
@@ -30,13 +26,9 @@ if(isset($_POST['submit'])){
 <html>
 	<body>
 		<form action="install_script.php">
-			<p>Server:</p>
-			<input type="text" name="Server" required>
-			<p>username:</p>
-			<input type="text" name="Username" required>
-			<p>password:</p>
-			<input type="text" name="Password" required>
-			<p>database:</p>
+			<p>The table can be installed through the button below.</p> 
+			<p>The server, database, username and password are defined in the config.ini and that only has to be adjusted for the script to work</p>
+			<p>create table:</p>
 			<input type="submit" name="submit">
 		</form>
 
