@@ -18,17 +18,17 @@ class ProfileView{
             	<body>
             		<div>
             			<h1> verzonden informatie</h1>
-            			<p>' . $row['Voornaam'] . '</p>
-            			<p>' . $row['Tussenvoegsel'] . '</p>
-            			<p>' . $row['Achternaam'] . '</p>
-            			<p>' . $row['Telefoonnummer'] . '</p>
-            			<p>' . $row['IP_van_registratie'] . '</p>
-            			<p>' . $row['Schermnaam'] . '</p>
-            			<p>' . $row['E_mailadres'] . '</p>
+            			<p>Voornaam: ' . $row['Voornaam'] . '</p>
+            			<p>Tussenvoegsel: ' . $row['Tussenvoegsel'] . '</p>
+            			<p>Achternaam: ' . $row['Achternaam'] . '</p>
+            			<p>Telefoonnummer: ' . $row['Telefoonnummer'] . '</p>
+            			<p>IP: ' . $row['IP_van_registratie'] . '</p>
+            			<p>Schermnaam: ' . $row['Schermnaam'] . '</p>
+            			<p>E-mail: ' . $row['E_mailadres'] . '</p>
+            			<p>Wachtwoord: ' . $row['Wachtwoord'] . '</p>
             			<image src="/opdracht/uploads/' . $row['Avatar_afbeelding'] . '"></image>
-            			<p>' . $row['Wachtwoord'] . '</p><br>
             			<h1>Unset session</h1>
-            			<form action="index.php">
+            			<form action="index.php" method="POST">
             				<input type="submit" name="unset">
             			</form>
             		</div>

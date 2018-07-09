@@ -2,8 +2,6 @@
 
 class FormModel{
 
-	private $_acceptedFormats = ['image/png', 'image/jpg', 'image/jpeg'];
-
     public $FirstName; 
     public $insertion; 
     public $LastName; 
@@ -13,6 +11,31 @@ class FormModel{
     public $E_mail; 
     public $Image; 
     public $Password;
+
+    public function Array_Form($FirstName, $insertion, $LastName, $Phonenumber, $IP, $Screen, $E_mail, $Image, $Password){
+
+    	$server = "localhost";
+		$user= "root";
+		$password = "dylan9189";
+		$db = "topbloemen";
+
+		$database = mysqli_connect($server, $user, $password, $db);
+		
+    	if(isset($_POST['submit'])){
+	    	$data = array(
+	    		'FirstName' => mysqli_real_escape_string($database, $FirstName),
+	    		'insertion' => mysqli_real_escape_string($database, $insertion),
+	    		'LastName' => mysqli_real_escape_string($database, $LastName),
+	    		'Phonenumber' => mysqli_real_escape_string($database, $Phonenumber),
+	    		'IP' => $_SERVER['REMOTE_ADDR'],
+	    		'Screen' => $Screen,
+	    		'E_mail' => mysqli_real_escape_string($database, $E_mail),
+	    		'image' => $Image,
+	    		'Password' => mysqli_real_escape_string($database, $Password)
+	    	);
+		    return $data;
+    	}
+    }
 
     public function Select_Information($Voornaam){
 

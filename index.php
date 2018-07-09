@@ -20,25 +20,25 @@ if(isset($_POST['submit'])){
 
 		$table = 'informatie_topbloemen';
 		$controller->Insert_Information($table, $model->Array_Form(
-			mysqli_real_escape_string($_POST['FirstName']), 
-			mysqli_real_escape_string($_POST['Insertion']), 
-			mysqli_real_escape_string($_POST['LastName']), 
-			mysqli_real_escape_string($_POST['PhoneNumber']), 
+			mysqli_real_escape_string($database, $_POST['FirstName']), 
+			mysqli_real_escape_string($database, $_POST['Insertion']), 
+			mysqli_real_escape_string($database, $_POST['LastName']), 
+			mysqli_real_escape_string($database, $_POST['PhoneNumber']), 
 			$_SERVER['REMOTE_ADDR'], 
 			$_SESSION['screen'], 
-			mysqli_real_escape_string($_POST['E_mail']), 
+			mysqli_real_escape_string($database, $_POST['E_mail']), 
 			$_FILES['Image']['name'],
-			mysqli_real_escape_string($_POST['Password'])
+			mysqli_real_escape_string($database, $_POST['Password'])
 		));
 
-		$_SESSION['Voornaam'] = mysqli_real_escape_string($_POST['FirstName']);
+		$_SESSION['Voornaam'] = mysqli_real_escape_string($database, $_POST['FirstName']);
 		header("Refresh:0");
 		
 	}
 }
 
 if(isset($_POST['unset'])){
-	unset($_SESSION['Voornaam']);	
+	unset($_SESSION);	
 }
 
 

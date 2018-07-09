@@ -2,6 +2,8 @@
 
 class FormController{
 
+	private $_acceptedFormats = ['image/png', 'image/jpg', 'image/jpeg'];
+
 	protected $model;
 
 	public function __construct(FormModel $model){
@@ -9,7 +11,6 @@ class FormController{
 	}
 
 	public function Insert_Information($table, $values) {
-
 		$server = "localhost";
 		$user= "root";
 		$password = "dylan9189";
