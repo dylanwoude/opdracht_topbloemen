@@ -4,26 +4,36 @@ class FormController{
 
 	private $_acceptedFormats = ['image/png', 'image/jpg', 'image/jpeg'];
 
-	protected $model;
+	private $model;
 
-	public function __construct(FormModel $model){
+	public function __construct(){
 		$this->model = new FormModel();
 	}
 
-	public function Insert_Information($table, $values) {
-		$server = "localhost";
-		$user= "root";
-		$password = "dylan9189";
-		$db = "topbloemen";
+	public function db_connect(){
 
-		$database = mysqli_connect($server, $user, $password, $db);
+	    static $connection;
+
+	    if(!isset($connection)) {
+	        $config = parse_ini_file('C:/nginx/www/opdracht/config.ini'); 
+	        $connection = mysqli_connect($config['servername'], $config['username'], $config['password'], $config['dbname']);
+	    }
+
+	    if($connection === false) {
+	        return mysqli_connect_error(); 
+	    }
+	    return $connection;
+	}
+
+	public function Insert_Information($table, $values) {
+
+		$connection = $this->db_connect();
         
 		$query = "INSERT INTO informatie_topbloemen 
 		(Voornaam, Tussenvoegsel, Achternaam, Telefoonnummer, IP_van_registratie, Schermnaam, E_mailadres, Avatar_afbeelding, Wachtwoord)
 		 VALUES (" . "'" . implode("', '", $values) . "'" .");";
 
-		echo $query;
-		$result = mysqli_query($database, $query);
+		$result = mysqli_query($connection, $query);
     }
 
 
@@ -43,6 +53,8 @@ class FormController{
     		die('this is not a $_FILES array');
     	}
     }
+
+    
 
 }
 

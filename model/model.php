@@ -12,15 +12,26 @@ class FormModel{
     public $Image; 
     public $Password;
 
+	public function db_connect(){
+
+	    static $connection;
+
+	    if(!isset($connection)) {
+	        $config = parse_ini_file('C:/nginx/www/opdracht/config.ini'); 
+	        $connection = mysqli_connect($config['servername'], $config['username'], $config['password'], $config['dbname']);
+	    }
+
+	    if($connection === false) {
+	        return mysqli_connect_error(); 
+	    }
+	    return $connection;
+	}
+
     public function Array_Form($FirstName, $insertion, $LastName, $Phonenumber, $IP, $Screen, $E_mail, $Image, $Password){
 
-    	$server = "localhost";
-		$user= "root";
-		$password = "dylan9189";
-		$db = "topbloemen";
+    	$database = $this->db_connect();
+    	
 
-		$database = mysqli_connect($server, $user, $password, $db);
-		
     	if(isset($_POST['submit'])){
 	    	$data = array(
 	    		'FirstName' => mysqli_real_escape_string($database, $FirstName),
